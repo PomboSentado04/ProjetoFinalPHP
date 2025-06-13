@@ -1,14 +1,14 @@
 <?php
 
-    function form_nao_enviado() {
+    function formNaoEnviado() {
         return $_SERVER['REQUEST_METHOD'] !== 'POST';
     }
 
-    function campos_em_branco_login() {
+    function camposEmBrancoLogin() {
     return empty($_POST['usuario']) || empty($_POST['senha']);
     }
 
-    function campos_em_branco_cadastro() {
+    function camposEmBrancoCadastro() {
     return empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']);
     }
 

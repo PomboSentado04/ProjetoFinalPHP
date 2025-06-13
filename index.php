@@ -8,7 +8,8 @@
 <body>
     <h1>Login</h1>
 
-    <form action="validar.php" method="post">
+    <form action="validarLogin.php" method="post">
+
         <label for="login">Usuário:</label>
         <input type="text" id="login" name="login" required><br><br>
         
@@ -20,6 +21,6 @@
     
     <br>
     <a href="cadastro.php">Cadastrar novo usuário</a>
-    
+
 </body>
 </html>

@@ -9,20 +9,20 @@
     <h1>Cadastro</h1>
 
     <form action="validarCadastro.php" method="POST">
-        <div>
-            <label for="login">Login:</label>
-            <input type="text" id="login" name="login" required>
-        </div>
         
-        <div>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" required><br><br>
+    
+    
+    
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+    
+    
+    
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required><br><br>
         
-        <div>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-        </div>
         
         <button type="submit">Cadastrar</button>
     </form>
