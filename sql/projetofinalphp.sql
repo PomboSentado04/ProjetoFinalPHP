@@ -32,7 +32,7 @@ CREATE TABLE `musicas` (
   `id_usuario` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `artista` varchar(50) NOT NULL,
-  `album` varchar(50) NOT NULL,
+  `album` varchar(50) NULL,
   `duracao` time NOT NULL,
   `genero` varchar(50) NOT NULL,
   `data_criacao` datetime NOT NULL DEFAULT current_timestamp()
