@@ -2,8 +2,8 @@
 
 // Função para conectar ao banco
 
-function conectar_banco() {
-    $servidor = 'localhost:3307'; 
+function conectarBanco() {
+    $servidor = 'localhost'; 
     $usuario  = 'root';           
     $senha    = '';               
     $banco    = 'projetofinalphp'; 
