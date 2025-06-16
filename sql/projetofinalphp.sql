@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/06/2025 às 05:08
+-- Tempo de geração: 16/06/2025 às 16:08
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `musicas` (
   `id_usuario` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `artista` varchar(50) NOT NULL,
-  `album` varchar(50) NULL,
+  `album` varchar(50) DEFAULT NULL,
   `duracao` time NOT NULL,
   `genero` varchar(50) NOT NULL,
   `data_criacao` datetime NOT NULL DEFAULT current_timestamp()
@@ -50,6 +50,13 @@ CREATE TABLE `usuarios` (
   `senha` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `login`, `senha`, `email`) VALUES
+(8, 'Pedro', '$2y$10$JIGdCcpC53VbAXz2Tk8O7OXNgrqt0CqeVQNUqVF.mUFeR1QhBln2e', 'pedro@gmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -82,7 +89,7 @@ ALTER TABLE `musicas`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para tabelas despejadas
