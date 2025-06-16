@@ -28,7 +28,9 @@ Ao rodar a aplicação:
 
 - Você verá uma tela de login, mas primeiro precisa se cadastrar.
 
-- Ao se cadastrar você será direcionado para a página pessoal para cadastrar e listar as suas músicas.
+- Ao se cadastrar você será direcionado para a pagina de login, onde poderá logar com suas informações já cadastradas.
+
+- Ao logar você será direcionado para a sua página pessoal para cadastrar e listar as suas músicas.
 
 - Ao clicar em Logout você será deslogado e enviado para a página de login, onde poderá logar com suas informações já cadastradas.
 
@@ -43,4 +45,50 @@ Ao rodar a aplicação:
 - Ao escolher editar a sua música você será direcionado para uma página de edição.
 
 - Na página de edição você muda as informações que quer trocar e deixa aquelas que você quer que permaneçam.
+
+Cadastros Teste:
+
+- Usuário: João
+- Email: joao09@gmail.com
+- Senha: pao1234
+
+- Usuário: Mario
+- Email: mario76@gmail.com
+- Senha: abelha456
+
+- Usuário: MarioBrega 
+- Email: mario76@gmail.com (email repetido, teste deve falhar)
+- Senha: abelha456
+
+Registros de Músicas Teste:
+
+- nome: Bohemian Rhapsody
+- artista: Queen
+- album: A Night at the Opera
+- duracao: 05:55
+- genero: Rock
+
+- nome: Imagine
+- artista: John Lennon
+- album: "" (vazio)
+- duracao: 03:04
+- genero: Pop Rock
+
+- nome: This Is a Very Long Song Name That Tests the Fifty Character Limit
+- artista: An Extremely Long Band Name Testing the Character Limit Too
+- album: Testing Album Name Limits in the System
+- duracao: 10:30
+- genero: Progressive Experimental Rock
+
+- nome: 4'33"
+- artista: John Cage
+- album: 4'33"
+- duracao: 00:00 (música experimental sem som)
+- genero: Experimental
+
+- nome: São João, Xote e Miudinho
+- artista: Luiz Gonzaga
+- album: Forró do Rei
+- duracao: 03:45
+- genero: Forró
 
