@@ -1,3 +1,8 @@
+<?php
+    require_once 'includes/functions.php';
+    sessaoIniciada();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

@@ -1,107 +1,107 @@
 <?php
-    require_once 'functions.php';
+require_once 'functions.php';
 
-    //Só aceita formulario enviado por método POST
-    if (formNaoEnviado()) {
-        header('location:../cadastro.php'); 
-        exit;
-    }
+//Só aceita formulario enviado por método POST
+if (formNaoEnviado()) {
+    header('location:../cadastro.php'); 
+    exit;
+}
 
-    //Verifica se tem algum campo em branco
-    if (camposEmBrancoCadastro()) {
-        header('location:../cadastro.php'); 
-        exit;
-    }
+//Verifica se tem algum campo em branco
+if (camposEmBrancoCadastro()) {
+    header('location:../cadastro.php'); 
+    exit;
+}
 
-    // Verifica e sanatiza o login dado
-    $login = filter_var($_POST['login'], FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    // Sanatiza o email dado
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+// Verifica e sanatiza o login dado
+$login = filter_var($_POST['login'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-    // Verifica o email dado
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location:../cadastro.php'); 
-        exit;
-    }
+// Sanatiza o email dado
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-    // Filtra a senha dada
-    $senha = trim($_POST['senha']);
+// Verifica o email dado
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header('location:../cadastro.php'); 
+    exit;
+}
 
-    require_once 'conexao.php';
+// Filtra a senha dada
+$senha = trim($_POST['senha']);
 
-    // Conexão com banco
-    $conn = conectarBanco();
+require_once 'conexao.php';
 
-    // Inicio da consulta
-    $query = "SELECT id FROM usuarios WHERE login = ? OR email = ?";
+// Conexão com banco
+$conn = conectarBanco();
 
-    // Relaciona a consulta com o banco
-    $stmt = mysqli_prepare($conn, $query);
+// Inicio da consulta
+$query = "SELECT id FROM usuarios WHERE login = ? OR email = ?";
 
-    if (!$stmt) {
-        header('location:../cadastro.php');
-        exit;
-    }
+// Relaciona a consulta com o banco
+$stmt = mysqli_prepare($conn, $query);
 
-    mysqli_stmt_bind_param($stmt, "ss", $login, $email);
+if (!$stmt) {
+    header('location:../cadastro.php');
+    exit;
+}
 
-    mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_param($stmt, "ss", $login, $email);
 
-    mysqli_stmt_store_result($stmt);
+mysqli_stmt_execute($stmt);
 
-    // Verifica se há login ou email duplicado
-    if (mysqli_stmt_num_rows($stmt) > 0) {
-        header('location:../cadastro.php'); 
-        exit;
-    }
+mysqli_stmt_store_result($stmt);
 
-    // Obtem o hash da senha dada
-    $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
+// Verifica se há login ou email duplicado
+if (mysqli_stmt_num_rows($stmt) > 0) {
+    header('location:../cadastro.php'); 
+    exit;
+}
 
-    // Requisição de registro no banco
-    $query_insert = "INSERT INTO usuarios (login, email, senha) VALUES (?, ?, ?)";
+// Obtem o hash da senha dada
+$senha_hash = password_hash($senha, PASSWORD_BCRYPT);
 
-    $stmt_insert = mysqli_prepare($conn, $query_insert);
+// Requisição de registro no banco
+$query_insert = "INSERT INTO usuarios (login, email, senha) VALUES (?, ?, ?)";
 
-    if (!$stmt_insert) {
-        header('location:../cadastro.php');
-        exit;
-    }
+$stmt_insert = mysqli_prepare($conn, $query_insert);
 
-    mysqli_stmt_bind_param($stmt_insert, "sss", $login, $email, $senha_hash);
+if (!$stmt_insert) {
+    header('location:../cadastro.php');
+    exit;
+}
 
-    mysqli_stmt_execute($stmt_insert);
+mysqli_stmt_bind_param($stmt_insert, "sss", $login, $email, $senha_hash);
 
-    mysqli_stmt_close($stmt_insert);
+mysqli_stmt_execute($stmt_insert);
 
-    // Inicio da consulta
-    $query = "SELECT * FROM usuarios WHERE login = ?";
+mysqli_stmt_close($stmt_insert);
 
-    // Relaciona a consulta com o banco
-    $stmt_final = mysqli_prepare($conn, $query);
+// Inicio da consulta
+$query = "SELECT * FROM usuarios WHERE login = ?";
 
-    mysqli_stmt_bind_param($stmt_final, "s", $login);
+// Relaciona a consulta com o banco
+$stmt_final = mysqli_prepare($conn, $query);
 
-    $resultado = mysqli_stmt_execute($stmt_final);
+mysqli_stmt_bind_param($stmt_final, "s", $login);
 
-    if (!$resultado) {
-        header('location:../index.php');
-        exit;
-    }
+$resultado = mysqli_stmt_execute($stmt_final);
 
-    // Dados do banco são pegos e armazenados em variaveis, com base no login verificado anteriormente
-    mysqli_stmt_bind_result($stmt_final, $login_id, $login_usuario, $login_senha, $login_email);
+if (!$resultado) {
+    header('location:../index.php');
+    exit;
+}
 
-    mysqli_stmt_fetch($stmt_final);
+// Dados do banco são pegos e armazenados em variaveis, com base no login verificado anteriormente
+mysqli_stmt_bind_result($stmt_final, $login_id, $login_usuario, $login_senha, $login_email);
 
-    // Inicia uma sessão
-    session_start();
-    
-    // Os dados são guardados em variaveis da sessão, menos a senha(por motivos de segurança).
-    $_SESSION['id']         = $login_id;
-    $_SESSION['usuario']    = $login_usuario;
-    $_SESSION['email']      = $login_email;
+mysqli_stmt_fetch($stmt_final);
 
-    header('location:../restrita.php');
+// Inicia uma sessão
+session_start();
+
+// Os dados são guardados em variaveis da sessão, menos a senha(por motivos de segurança).
+$_SESSION['id']         = $login_id;
+$_SESSION['usuario']    = $login_usuario;
+$_SESSION['email']      = $login_email;
+
+header('location:../restrita.php');
 ?>
