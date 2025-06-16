@@ -71,7 +71,7 @@
     
     // Os dados são guardados em variaveis da sessão, menos a senha(por motivos de segurança).
     $_SESSION['id']         = $login_id;
-    $_SESSION['usuario']    = $login_usuario;
+    $_SESSION['login']    = $login_usuario;
     $_SESSION['email']      = $login_email;
 
     header('location:restrita.php');

@@ -1,3 +1,8 @@
+<?php  
+    require_once 'includes/functions.php';
+    iniciarSessaoSegura()
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +11,13 @@
     <title>Restrita</title>
 </head>
 <body>
-    TEXTO
+    <nav>
+        <a href="index.php">Home</a> | 
+        <a href="restrita.php">Área Restrita</a> | 
+        <a href="logout.php">Logout</a>
+    </nav>
+
+    <h2>Bem-vindo, <?=$_SESSION['login']?>!</h2>
+
 </body>
 </html>
