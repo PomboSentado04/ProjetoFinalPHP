@@ -17,7 +17,7 @@
     <div class="auth-container">
         <h1 class="auth-title"><i class="bi bi-person-fill"></i> Login</h1>
         
-        <form action="validarLogin.php" method="post" class="auth-form">
+        <form action="includes/validarLogin.php" method="post" class="auth-form">
             <div class="form-group">
                 <label for="login" class="form-label">Usuário:</label>
                 <input type="text" class="form-control" id="login" name="login" required>

@@ -1,15 +1,15 @@
 <?php
-    require_once 'includes/functions.php';
+    require_once 'functions.php';
 
     //Só aceita formulario enviado por método POST
     if (formNaoEnviado()) {
-        header('location:cadastro.php'); 
+        header('location:../cadastro.php'); 
         exit;
     }
 
     //Verifica se tem algum campo em branco
     if (camposEmBrancoCadastro()) {
-        header('location:cadastro.php'); 
+        header('location:../cadastro.php'); 
         exit;
     }
 
@@ -21,14 +21,14 @@
 
     // Verifica o email dado
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location:cadastro.php'); 
+        header('location:../cadastro.php'); 
         exit;
     }
 
     // Filtra a senha dada
     $senha = trim($_POST['senha']);
 
-    require_once 'includes/conexao.php';
+    require_once 'conexao.php';
 
     // Conexão com banco
     $conn = conectarBanco();
@@ -40,7 +40,7 @@
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        header('location:cadastro.php');
+        header('location:../cadastro.php');
         exit;
     }
 
@@ -52,7 +52,7 @@
 
     // Verifica se há login ou email duplicado
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        header('location:cadastro.php'); 
+        header('location:../cadastro.php'); 
         exit;
     }
 
@@ -65,7 +65,7 @@
     $stmt_insert = mysqli_prepare($conn, $query_insert);
 
     if (!$stmt_insert) {
-        header('location:cadastro.php');
+        header('location:../cadastro.php');
         exit;
     }
 
@@ -86,7 +86,7 @@
     $resultado = mysqli_stmt_execute($stmt_final);
 
     if (!$resultado) {
-        header('location:index.php');
+        header('location:../index.php');
         exit;
     }
 
@@ -103,5 +103,5 @@
     $_SESSION['usuario']    = $login_usuario;
     $_SESSION['email']      = $login_email;
 
-    header('location:restrita.php');
+    header('location:../restrita.php');
 ?>

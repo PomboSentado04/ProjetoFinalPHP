@@ -1,15 +1,15 @@
 <?php
-    require_once 'includes/functions.php';
+    require_once 'functions.php';
 
     //Só aceita formulario enviado por método POST
     if (formNaoEnviado()) {
-        header('location:index.php'); 
+        header('location:../index.php'); 
         exit;
     }
 
     //Verifica se tem algum campo em branco
     if (camposEmBrancoLogin()) {
-        header('location:index.php'); 
+        header('location:../index.php'); 
         exit;
     }
 
@@ -19,7 +19,7 @@
     // Filtro para senha
     $senha = trim($_POST['senha']);
 
-    require_once 'includes/conexao.php';
+    require_once 'conexao.php';
 
     // Conexão com banco
     $conn = conectarBanco();
@@ -31,7 +31,7 @@
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        header('location:index.php');
+        header('location:../index.php');
         exit;
     }
 
@@ -40,7 +40,7 @@
     $resultado = mysqli_stmt_execute($stmt);
 
     if (!$resultado) {
-        header('location:index.php');
+        header('location:../index.php');
         exit;
     }
 
@@ -51,7 +51,7 @@
 
     if ($linhas <= 0) {
 
-        header('location:index.php'); 
+        header('location:../index.php'); 
         exit;
     }
 
@@ -62,7 +62,7 @@
 
     // Verifica se senha dada bate com a senha hash vinda do servidor
     if (!password_verify($senha, $login_senha)) {
-        header('location:index.php');
+        header('location:../index.php');
         exit;
     }
 
@@ -74,6 +74,6 @@
     $_SESSION['login']    = $login_usuario;
     $_SESSION['email']      = $login_email;
 
-    header('location:restrita.php');
+    header('location:../restrita.php');
 
 ?>

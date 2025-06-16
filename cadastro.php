@@ -17,7 +17,7 @@
     <div class="auth-container">
         <h1 class="auth-title"><i class="bi bi-person-plus"></i> Cadastro</h1>
         
-        <form action="validarCadastro.php" method="POST" class="auth-form">
+        <form action="includes/validarCadastro.php" method="POST" class="auth-form">
             <div class="form-group">
                 <label for="login" class="form-label">Login:</label>
                 <input type="text" class="form-control" id="login" name="login" required>

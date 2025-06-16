@@ -1,18 +1,18 @@
 <?php
-    require_once 'includes/functions.php';
+    require_once 'functions.php';
 
     //Verifica se o usuario está logado
     iniciarSessaoSegura();
 
     //Só aceita formulario enviado por método POST
     if (formNaoEnviado()) {
-        header('location:index.php'); 
+        header('location:../index.php'); 
         exit;
     }
 
     //Verifica se tem algum campo em branco
     if (camposEmBrancoMusica()) {
-        header('location:index.php'); 
+        header('location:../index.php'); 
         exit;
     }
 
@@ -27,7 +27,7 @@
 
     $genero = filter_var($_POST['genero'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-    require_once 'includes/conexao.php';
+    require_once 'conexao.php';
 
     $conn = conectarBanco();
 
@@ -36,7 +36,7 @@
     $stmt = mysqli_prepare($conn, $query);
 
     if (!$stmt) {
-        header('location:restrita.php');
+        header('location:../restrita.php');
         exit;
     }
     
@@ -46,5 +46,5 @@
 
     mysqli_stmt_close($stmt);
 
-    header('location:restrita.php');
+    header('location:../restrita.php');
 ?>
